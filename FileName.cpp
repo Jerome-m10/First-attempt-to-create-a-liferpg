@@ -10,31 +10,31 @@ struct PlayData {
 	int stamina = 10;
 	int intelligence = 10;
 };
-void DataSave(const PlayData& Data) { //constµÄÓÃ´¦¼´ÊÇ½«mainº¯Êı²Ù×÷µÃ³öµÄĞÂPlayerData±£»¤ÆğÀ´¸´ÖÆµ½fileÀï£¬·ÀÖ¹²»µ±²Ù×÷½øĞĞĞŞ¸Ä£»&Ó¦ÓÃÀàĞÍÒşĞÎ°ó¶¨µØÖ·£¬Ò²¿ÉÓÃÖ¸Õë
+void DataSave(const PlayData& Data) { //constçš„ç”¨å¤„å³æ˜¯å°†mainå‡½æ•°æ“ä½œå¾—å‡ºçš„æ–°PlayerDataä¿æŠ¤èµ·æ¥å¤åˆ¶åˆ°fileé‡Œï¼Œé˜²æ­¢ä¸å½“æ“ä½œè¿›è¡Œä¿®æ”¹ï¼›&åº”ç”¨ç±»å‹éšå½¢ç»‘å®šåœ°å€ï¼Œä¹Ÿå¯ç”¨æŒ‡é’ˆ
 	std::ofstream file;
-	file.open("D:\\LIFE RPG\\BETA I\\playdata.txt");
+	file.open("D:\\LIFE RPG\\BETA I\\playdata.txt");   //æ­¤å¤„åœ°å€åªæ˜¯ä¸ªäººä¸ºäº†åœ¨ç”µè„‘ä¸Šè°ƒè¯•æ•°æ®æ‰€å›ºå®šçš„
 
 	file << Data.intelligence<<"\n";
 	file << Data.stamina<<"\n";
 	file << Data.strength<<"\n";
 	file.close();
 }
-PlayData Dataload() {  //Playdata ÓÃÓÚ´«µİ»ØÖµ
+PlayData Dataload() {  //Playdata ç”¨äºä¼ é€’å›å€¼
 	PlayData data;
 	std::ifstream file("D:\\LIFE RPG\\BETA I\\playdata.txt");
-	if (file.is_open()) {                      //ÔÚ¶ÁÈ¡·½Ãæ£¬ĞèÒªÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	if (file.is_open()) {                      //åœ¨è¯»å–æ–¹é¢ï¼Œéœ€è¦åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 		file >> data.intelligence;
 		file >> data.stamina;
 		file >> data.strength;
 	}
 	return data;
 }
-int OperateInt() {
+int OperateInt() {      //å¯¹æ™ºåŠ›è¿›è¡Œæ“ä½œï¼Œæœ€ç®€å•çš„çº¿æ€§æ¨¡å‹ï¼Œæš‚æ— è®¾è®¡è¡°å‡ä¸Šé™æ¨¡å‹
 	int choice,times;
-	cout << "Äã½øÌì×öÁËÊ²Ã´£¬×öÁË¼¸´Î" << endl;
-	cout << "1,Ñ§Ï°ÊıÑ§" << endl;
-	cout << "2,Ñ§Ï°Êı¾İ½á¹¹" << endl;
-	cout << "3,×öÏîÄ¿" << endl;
+	cout << "ä½ è¿›å¤©åšäº†ä»€ä¹ˆï¼Œåšäº†å‡ æ¬¡" << endl;
+	cout << "1,å­¦ä¹ æ•°å­¦" << endl;
+	cout << "2,å­¦ä¹ æ•°æ®ç»“æ„" << endl;
+	cout << "3,åšé¡¹ç›®" << endl;
 	cin >> choice >> times;
 	switch (choice) {
 	case 1:
@@ -48,12 +48,12 @@ int OperateInt() {
 	}
 
 }
-int OperateSta() {
+int OperateSta() {   //è€åŠ›
 	int choice, times;
-	cout << "Äã½øÌì×öÁËÊ²Ã´£¬×öÁË¼¸´Î" << endl;
-	cout << "1,³¤ÅÜ1000m" << endl;
-	cout << "2,ËÙ¶ÈÄÍÁ¦100*4" << endl;
-	cout << "3,Æï×ÔĞĞ³µ3km" << endl;
+	cout << "ä½ è¿›å¤©åšäº†ä»€ä¹ˆï¼Œåšäº†å‡ æ¬¡" << endl;
+	cout << "1,é•¿è·‘1000m" << endl;
+	cout << "2,é€Ÿåº¦è€åŠ›100*4" << endl;
+	cout << "3,éª‘è‡ªè¡Œè½¦3km" << endl;
 	cin >> choice >> times;
 	switch (choice) {
 	case 1:
@@ -67,12 +67,12 @@ int OperateSta() {
 	}
 
 }
-int OperateStr() {
-	int choice, times;
-	cout << "Äã½øÌì×öÁËÊ²Ã´£¬×öÁË¼¸´Î" << endl;
-	cout << "1,½¡Éí·¿" << endl;
-	cout << "2,¸©ÎÔ³Å100¸ö" << endl;
-	cout << "3,Á·¸¹¼¡" << endl;
+int OperateStr() {                 //åŠ›é‡
+	int choice, times; 
+	cout << "ä½ è¿›å¤©åšäº†ä»€ä¹ˆï¼Œåšäº†å‡ æ¬¡" << endl;
+	cout << "1,å¥èº«æˆ¿" << endl;
+	cout << "2,ä¿¯å§æ’‘100ä¸ª" << endl;
+	cout << "3,ç»ƒè…¹è‚Œ" << endl;
 	cin >> choice >> times;
 	switch (choice) {
 	case 1:
@@ -90,15 +90,15 @@ int main() {
 	int a,timejudge=0;
 	PlayData IniData;
 	IniData = Dataload();
-	cout << "Äúµ±Ç°µÄÖÇÁ¦£¬ÌåÁ¦£¬Á¦Á¿ÊıÖµ·Ö±ğÎª" << endl;
+	cout << "æ‚¨å½“å‰çš„æ™ºåŠ›ï¼Œä½“åŠ›ï¼ŒåŠ›é‡æ•°å€¼åˆ†åˆ«ä¸º" << endl;
 	cout << IniData.intelligence <<"  " << IniData.stamina <<"  " << IniData.strength << endl;
 	while (1) {
 		timejudge++;
-		cout << "ÇëÊäÈëÄãµÄ²Ù×÷" << endl;
-		cout << "0:½áÊø" << endl;
-		cout << "1:½øĞĞÖÇÁ¦ÑµÁ·" << endl;
-		cout << "2:½øĞĞÌåÁ¦ÑµÁ·" << endl;
-		cout << "3:½øĞĞÁ¦Á¿ÑµÁ·" << endl;
+		cout << "è¯·è¾“å…¥ä½ çš„æ“ä½œ" << endl;
+		cout << "0:ç»“æŸ" << endl;
+		cout << "1:è¿›è¡Œæ™ºåŠ›è®­ç»ƒ" << endl;
+		cout << "2:è¿›è¡Œä½“åŠ›è®­ç»ƒ" << endl;
+		cout << "3:è¿›è¡ŒåŠ›é‡è®­ç»ƒ" << endl;
 		cin >> a;
 		if (a == 0)
 			if (timejudge == 1)
@@ -115,7 +115,7 @@ int main() {
 			IniData.strength += OperateStr();
 			break;
 		default:
-			cout << "´íÎó²Ù×÷" << endl;
+			cout << "é”™è¯¯æ“ä½œ" << endl;
 			break;
 		}
 
