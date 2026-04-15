@@ -8,12 +8,12 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::vector;
-using json = nlohmann::json;  //¼òĞ´Ò»ÏÂ
+using json = nlohmann::json;  //ç®€å†™ä¸€ä¸‹
 
 class PlayManager {
 private:
 
-	struct Task {                          /*ÓÃÓÚÓÃ»§×Ô¼ºÌí¼ÓÊÂÏî*/
+	struct Task {                          /*ç”¨äºç”¨æˆ·è‡ªå·±æ·»åŠ äº‹é¡¹*/
 		string name;
 		int ValueToAdd;
 		string category;
@@ -34,10 +34,10 @@ private:
 
 public:
 
-	PlayData Dataload() {  //Playdata ÓÃÓÚ´«µİ»ØÖµ
+	PlayData Dataload() {  //Playdata ç”¨äºä¼ é€’å›å€¼
 		PlayData data;
-		std::ifstream file("D:\\LIFE RPG\\BETA I\\playdata.txt");
-		if (file.is_open()) {                      //ÔÚ¶ÁÈ¡·½Ãæ£¬ĞèÒªÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+		std::ifstream file("D:\\LIFE RPG\\BETA I\\playdata.txt");  //æœ¬åœ°å¼€å‘ï¼Œå…ˆå­˜å‚¨åœ¨æœ¬åœ°æ–‡ä»¶æ–¹ä¾¿è°ƒè¯•
+		if (file.is_open()) {                      //åœ¨è¯»å–æ–¹é¢ï¼Œéœ€è¦åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 			file >> data.intelligence;
 			file >> data.stamina;
 			file >> data.strength;
@@ -47,7 +47,7 @@ public:
 	}
 
 
-	void AddVal(int cat,int times,int choice) {   /*ÓÃÓÚ¶ÔÊıÖµ½øĞĞ²Ù×÷*/
+	void AddVal(int cat,int times,int choice) {   /*ç”¨äºå¯¹æ•°å€¼è¿›è¡Œæ“ä½œ*/
 		int i = 0;
 		if (choice < 0 || choice>stamina.size())
 			return;
@@ -75,7 +75,7 @@ public:
 	}
 
 
-	void CreateNewTask(string nameof,int val,int ncat,string cat) {    //´´½¨ĞÂµÄÈÎÎñ
+	void CreateNewTask(string nameof,int val,int ncat,string cat) {    //åˆ›å»ºæ–°çš„ä»»åŠ¡
 
 		Task newtask;
 		newtask.name = nameof;
@@ -83,7 +83,7 @@ public:
 		newtask.ValueToAdd = val;
 		newtask.ncategory = ncat;
 
-		switch (newtask.ncategory) {    //°´ÕÕÈÎÎñµÄÀàĞÍ·ÖÀà
+		switch (newtask.ncategory) {    //æŒ‰ç…§ä»»åŠ¡çš„ç±»å‹åˆ†ç±»
 		case 1:
 			intelligence.push_back(newtask);
 			break;
@@ -94,7 +94,7 @@ public:
 			strength.push_back(newtask);
 			break;
 		default:
-			cout << "´íÎóµÄ½á¹û" << endl;
+			cout << "é”™è¯¯çš„ç»“æœ" << endl;
 		}
 	}
 
@@ -142,14 +142,14 @@ public:
 				});
 		}
 		std::ofstream file("D:\\LIFE RPG\\BETA I\\tasks.json");
-		file << j.dump(4);        //ÒÔ×Ö·û´®Êä³öµ½ÎÄ¼ş
+		file << j.dump(4);        //ä»¥å­—ç¬¦ä¸²è¾“å‡ºåˆ°æ–‡ä»¶
 	}
 
 
 	void DownloadTask() {
 		std::ifstream file("D:\\LIFE RPG\\BETA I\\tasks.json");
 		if (!file.is_open()) {
-			std::cerr << "¾¯¸æ£ºÎ´ÕÒµ½tasks.jsonÎÄ¼ş£¬½«´´½¨ĞÂµÄÈÎÎñÁĞ±í" << std::endl;
+			std::cerr << "è­¦å‘Šï¼šæœªæ‰¾åˆ°tasks.jsonæ–‡ä»¶ï¼Œå°†åˆ›å»ºæ–°çš„ä»»åŠ¡åˆ—è¡¨" << std::endl;
 			return;
 		}
 		json j;
@@ -160,7 +160,7 @@ public:
 			comtemporary.ncategory = jsonTask["ncategory"];
 			comtemporary.name = jsonTask["name"];
 			comtemporary.ValueToAdd = jsonTask["ValueToAdd"];
-			switch (comtemporary.ncategory) {    //°´ÕÕÈÎÎñµÄÀàĞÍ·ÖÀà
+			switch (comtemporary.ncategory) {    //æŒ‰ç…§ä»»åŠ¡çš„ç±»å‹åˆ†ç±»
 			case 1:
 				intelligence.push_back(comtemporary);
 				break;
@@ -171,7 +171,7 @@ public:
 				strength.push_back(comtemporary);
 				break;
 			default:
-				cout << "´íÎóµÄ½á¹û" << endl;
+				cout << "é”™è¯¯çš„ç»“æœ" << endl;
 			}
 		}
 
@@ -197,7 +197,7 @@ public:
 		int i = 1;
 
 		if (intelligence.empty())
-			cout << "Ã»ÓĞÈÎÎñ¿ÉÓÃ" << endl;
+			cout << "æ²¡æœ‰ä»»åŠ¡å¯ç”¨" << endl;
 
 		for (auto x : intelligence) {
 			cout << i << "  " << x.name << "  " << x.ValueToAdd << endl;
@@ -209,7 +209,7 @@ public:
 
 	void StaminaTaskGet() {
 		if (stamina.empty())
-			cout << "Ã»ÓĞÈÎÎñ¿ÉÓÃ" << endl;
+			cout << "æ²¡æœ‰ä»»åŠ¡å¯ç”¨" << endl;
 
 		int i = 1;
 
@@ -223,7 +223,7 @@ public:
 
 	void StrengthTaskGet() {
 		if (strength.empty())
-			cout << "Ã»ÓĞÈÎÎñ¿ÉÓÃ" << endl;
+			cout << "æ²¡æœ‰ä»»åŠ¡å¯ç”¨" << endl;
 
 		int i = 1;
 
@@ -241,23 +241,23 @@ public:
 int main() {
 	int a,timejudge=0;
 	PlayManager mymanager;
-	mymanager.DownloadTask();   //¼ÓÔØÈÎÎñÊı¾İ
+	mymanager.DownloadTask();   //åŠ è½½ä»»åŠ¡æ•°æ®
 
 	mymanager.Dataload();
 
-	cout << "Äúµ±Ç°ÊıÖµÎª" << endl;
+	cout << "æ‚¨å½“å‰æ•°å€¼ä¸º" << endl;
 	cout << mymanager.IntelligenceGet() <<"  " << mymanager.StaminaGet() <<"  " << mymanager.StrengthGet() << endl;
 	cout << endl;
 
 	while (1) {
 		timejudge++;
-		cout << "ÇëÊäÈëÄãµÄ²Ù×÷" << endl;
-		cout << "0:½áÊø" << endl;
-		cout << "1:½øĞĞÖÇÁ¦ÑµÁ·" << endl;
-		cout << "2:½øĞĞÌåÁ¦ÑµÁ·" << endl;
-		cout << "3:½øĞĞÁ¦Á¿ÑµÁ·" << endl;
-		cout << "4:¼ÓÈëĞÂÈÎÎñ" << endl;
-		cout << "5:²é¿´µ±Ç°ÊıÖµ" << endl;
+		cout << "è¯·è¾“å…¥ä½ çš„æ“ä½œ" << endl;
+		cout << "0:ç»“æŸ" << endl;
+		cout << "1:è¿›è¡Œæ™ºåŠ›è®­ç»ƒ" << endl;
+		cout << "2:è¿›è¡Œä½“åŠ›è®­ç»ƒ" << endl;
+		cout << "3:è¿›è¡ŒåŠ›é‡è®­ç»ƒ" << endl;
+		cout << "4:åŠ å…¥æ–°ä»»åŠ¡" << endl;
+		cout << "5:æŸ¥çœ‹å½“å‰æ•°å€¼" << endl;
 		cin >> a;
 		cout << endl;
 		if (a == 0)
@@ -265,11 +265,11 @@ int main() {
 				return 0;
 			else break;
 		int choice, times;
-		switch (a) {       /*switchÓï¾ä1-3¶¼ÊÇÔö¼ÓÊıÖµµÄ*/
+		switch (a) {       /*switchè¯­å¥1-3éƒ½æ˜¯å¢åŠ æ•°å€¼çš„*/
 
 
 		case 1:
-			cout << "ÇëÑ¡ÔñÄãÒª½øĞĞµÄÈÎÎñ" << endl;
+			cout << "è¯·é€‰æ‹©ä½ è¦è¿›è¡Œçš„ä»»åŠ¡" << endl;
 			mymanager.IntelligenceTaskGet();
 
 			cin >> choice ;
@@ -282,7 +282,7 @@ int main() {
 
 
 		case 2:
-			cout << "ÇëÑ¡ÔñÄãÒª½øĞĞµÄÈÎÎñ" << endl;
+			cout << "è¯·é€‰æ‹©ä½ è¦è¿›è¡Œçš„ä»»åŠ¡" << endl;
 			mymanager.StaminaTaskGet();
 
 			cin >> choice;
@@ -297,7 +297,7 @@ int main() {
 
 
 		case 3:
-			cout << "ÇëÑ¡ÔñÄãÒª½øĞĞµÄÈÎÎñ" << endl;
+			cout << "è¯·é€‰æ‹©ä½ è¦è¿›è¡Œçš„ä»»åŠ¡" << endl;
 			mymanager.StrengthTaskGet();
 
 			
@@ -315,7 +315,7 @@ int main() {
 
 			string name, cat;
 			int val, ncat;
-			cout << "Çë·Ö±ğÊäÈëÈÎÎñÃû×Ö£¬ÄÜÁ¦Ôö³¤£¬Àà±ğ£¬Àà±ğ´úºÅ" << endl;
+			cout << "è¯·åˆ†åˆ«è¾“å…¥ä»»åŠ¡åå­—ï¼Œèƒ½åŠ›å¢é•¿ï¼Œç±»åˆ«ï¼Œç±»åˆ«ä»£å·" << endl;
 			cin >> name >> val >> cat >> ncat;
 
 			mymanager.CreateNewTask(name, val, ncat, cat);
@@ -323,13 +323,13 @@ int main() {
 			break;
 		}
 		case 5:
-			cout << "Äúµ±Ç°ÊıÖµÎª" << endl;
+			cout << "æ‚¨å½“å‰æ•°å€¼ä¸º" << endl;
 			cout << mymanager.IntelligenceGet() << "  " << mymanager.StaminaGet() << "  " << mymanager.StrengthGet() << endl;
 			cout << endl;
 			break;
 
 		default:
-			cout << "´íÎó²Ù×÷" << endl;
+			cout << "é”™è¯¯æ“ä½œ" << endl;
 			break;
 		}
 
